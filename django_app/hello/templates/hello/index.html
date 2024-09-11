@@ -15,8 +15,12 @@
         <p class="h5 my-4">{{message|safe}}</p>
         <form action="{% url 'index' %}" method="post">
             {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="click" class="btn btn-primary">
+            <table>
+                {{ form.as_table }}
+                <tr><td></td><td>
+                    <input type="submit" value="click" class="btn btn-primary">
+                </td></tr>
+            </table>
         </form>
     </body>
 </html>
