@@ -1,24 +1,23 @@
 from django.shortcuts import render
-from .forms import HelloForm
+from .forms import SessionForm
 from django.views.generic import TemplateView
-from django.http import HttpResponse
 
 class HelloView(TemplateView):
     
     def __init__(self):
         self.params = {
             'title':'Hello',
-            'form':HelloForm(),
+            'form':SessionForm(),
             'result':None
         }
     
     def get(self, request):
+        self.params = request.session.get('last_msg', 'No message.')
         return render(request, 'hello/index.html', self.params)
 
     def post(self, request):
-        if ('check' in request.POST):
-            self.params['result'] = 'Checked!!'
-        else:
-            self.params['result'] = 'Not Checked...'
-        self.params['form'] = HelloForm(request.POST)
+        ses = request.POST['session']
+        self.params['result'] = f'send:"{ses}".'
+        request.session['last_msg'] = ses
+        self.params['form'] = SessionForm(request.POST)
         return render(request, 'hello/index.html', self.params)
