@@ -1,7 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
-    <head lang="ja">
+<html lang="ja">
+    <head>
         <meta charset="utf-8">
         <title>{{title}}</title>
         <!-- CSS only -->
@@ -12,9 +12,15 @@
     </head>
     <body class="container">
         <h1 class="display-4 text-primary">{{title}}</h1>
-        <p class="h5 my-4">{{message|safe}}</p>
         <table class="table">
-            {{data|safe}}
+            <tr>
+                <th>data</th>
+            </tr>
+            {% for item in data %}
+            <tr>
+                <td>{{item}}</td>
+            </tr>
+            {% endfor %}
         </table>
     </body>
 </html>
