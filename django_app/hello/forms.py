@@ -6,7 +6,7 @@ class HelloForm(forms.Form):
     mail = forms.EmailField(label='Email', \
         widget=forms.EmailInput(attrs={'class':'form-control'}))
     gender = forms.BooleanField(label='Gender', required=False, \
-        widget=forms.CheckboxInput(attrs={'class':'form-control'}))
+        widget=forms.CheckboxInput(attrs={'class':'form-check'}))
     age = forms.IntegerField(label='Age', \
         widget=forms.NumberInput(attrs={'class':'form-control'}))
     birthday = forms.DateField(label='Birth', \
