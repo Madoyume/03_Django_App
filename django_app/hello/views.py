@@ -2,6 +2,14 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from .models import Friend
 from .forms import FriendForm
+from django.views.generic import ListView
+from django.views.generic import DetailView
+
+class FriendList(ListView):
+    model = Friend
+
+class FriendDetail(DetailView):
+    model = Friend
 
 def index(request):
     data = Friend.objects.all()
