@@ -10,5 +10,6 @@ urlpatterns = [
     path('delete/<int:num>/', views.delete, name='delete'),
     path('list/', FriendList.as_view()),
     path('detail/<int:pk>/', FriendDetail.as_view()),
-    path('find/', views.find, name='find')
+    path('find/', views.find, name='find'),
+    path('check/', views.check, name='check')
 ]
