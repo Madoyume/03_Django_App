@@ -12,6 +12,7 @@
     </head>
     <body class="container">
         <h1 class="display-4 text-primary">{{title}}</h1>
+        {{message|safe}}
         <table class="table">
             <tr>
                 <th>id</th>
@@ -19,6 +20,8 @@
                 <th>age</th>
                 <th>mail</th>
                 <th>birthday</th>
+                <th></th>
+                <th></th>
             </tr>
             {% for item in data %}
             <tr>
