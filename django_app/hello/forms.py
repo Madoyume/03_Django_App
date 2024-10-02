@@ -17,3 +17,7 @@ class CheckForm(forms.Form):
         widget=forms.NumberInput(attrs={'class':'form-control'}))
     max = forms.IntegerField(label='Max', max_value=1000, \
         widget=forms.NumberInput(attrs={'class':'form-control'}))
+    date = forms.DateField(label="Date", input_formats=['%d'], \
+        widget=forms.DateInput(attrs={'class':'form-control'}))
+    time = forms.TimeField(label='Time', \
+        widget=forms.TimeInput(attrs={'class':'form-control'}))
