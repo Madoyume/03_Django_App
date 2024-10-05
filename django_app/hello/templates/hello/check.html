@@ -10,9 +10,9 @@
     <body class="container">
         <h1 class="display-4 text-primary">{{title}}</h1>
         <p>{{message|safe}}</p>
-        <ol class="list-group">
+        <ol class="list-group mb-4">
             {% for item in form %}
-            <li>
+            <li class="list-group-item py-2">
                 {{item.name}} ({{item.value}})
                 :{{item.errors.as_text}}
             </li>
