@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from .models import Friend
-from .forms import FriendForm
+from .models import Friend, Message
+from .forms import FriendForm, MessageForm
 from django.views.generic import ListView
 from django.views.generic import DetailView
 from .forms import FindForm
@@ -101,3 +101,17 @@ def check(request):
         else:
             params['message'] = 'no good.'
     return render(request, 'hello/check.html', params)
+
+def message(request, page=1):
+    if(request.method=='POST'):
+        obj = Message()
+        form = MessageForm(request.POST, instance=obj)
+        form.save()
+    data = Message.objects.all().reverse()
+    paginator = Paginator(data, 3)
+    params = {
+        'title':'Message',
+        'form':MessageForm(),
+        'data':paginator.get_page(page),
+    }
+    return render(request, 'hello/message.html', params)

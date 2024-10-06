@@ -1,5 +1,5 @@
 from django import forms
-from .models import Friend
+from .models import Friend, Message
 
 class FriendForm(forms.ModelForm):
     class Meta:
@@ -25,3 +25,13 @@ class CheckForm(forms.Form):
         str = cleaned_data['str']
         if (str.lower().startswith('no')):
             raise forms.ValidationError('You input "No"!')
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ['title', 'content', 'friend']
+        widgets = {
+            'title':forms.TextInput(attrs={'class':'form-control form-control-sm'}),
+            'content':forms.Textarea(attrs={'class':'form-control form-control-sm', 'rows':2}),
+            'friend':forms.Select(attrs={'class':'form-control form-control-sm'}),
+        }
