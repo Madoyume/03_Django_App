@@ -102,16 +102,16 @@ def check(request):
             params['message'] = 'no good.'
     return render(request, 'hello/check.html', params)
 
-def message(request, page=1):
+def message(request, num=1):
     if(request.method=='POST'):
         obj = Message()
         form = MessageForm(request.POST, instance=obj)
         form.save()
     data = Message.objects.all().reverse()
-    paginator = Paginator(data, 3)
+    paginator = Paginator(data, 5)
     params = {
         'title':'Message',
         'form':MessageForm(),
-        'data':paginator.get_page(page),
+        'data':paginator.get_page(num),
     }
     return render(request, 'hello/message.html', params)
